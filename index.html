@@ -1,0 +1,210 @@
+ 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050509">
+  <meta name="description" content="A little birthday universe, made just for you.">
+  <title>A Little Birthday Universe</title>
+  <link rel="stylesheet" href="birthday.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="ambient ambient-three"></div><div class="film-vignette" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">✦</span> A LITTLE UNIVERSE</div>
+    <div class="topbar-right">
+      <span id="chapterLabel">CHAPTER 01 / 09</span>
+      <button class="icon-button" id="soundToggle" aria-label="Toggle sound effects" title="Sound effects on/off">♫</button>
+      <button class="icon-button music-open" id="musicOpen" aria-label="Open music controls" title="Music controls">♪</button>
+    </div>
+  </header>
+
+  <aside class="music-dock" id="musicDock" aria-label="Background music controls">
+    <div class="music-dock-head">
+      <span class="music-orb">♫</span>
+      <div><strong>Your soundtrack</strong><small id="musicStatus">Choose a song from your device</small></div>
+      <button id="musicClose" class="dock-close" aria-label="Close music controls">×</button>
+    </div>
+    
+<label class="music-file-button" for="musicFile">＋ CHOOSE AUDIO FILE<input id="musicFile" type="file" accept="audio/*"></label>
+<audio id="backgroundMusic" autoplay loop preload="auto" muted></audio>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+<div class="music-controls">
+
+      <button id="musicPlay" class="music-control" aria-label="Play music" disabled>▶</button>
+      <button id="musicStop" class="music-control" aria-label="Stop music" disabled>■</button>
+      <label class="volume-control">VOLUME <input id="musicVolume" type="range" min="0" max="1" step="0.01" value="0.45"></label>
+    </div>
+    <p class="music-note">Your selected song plays locally in this browser. Nothing is uploaded.</p>
+  </aside>
+
+  <main id="experience">
+    <section class="scene active" id="intro" aria-labelledby="introTitle">
+      <div class="eyebrow reveal">A PRIVATE LITTLE WORLD · MADE JUST FOR YOU</div>
+      <div class="intro-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="intro-content">
+        <p class="kicker reveal">SOME THINGS ARE WORTH OPENING SLOWLY</p>
+        <h1 id="introTitle" class="hero-title reveal">A little <em>magic</em><br>is waiting.</h1>
+        <p class="intro-copy reveal">Follow the light. Find the secret. Keep what makes you smile.</p>
+        <button class="primary-button reveal" id="beginBtn">ENTER YOUR SURPRISE <span>↗</span></button>
+      </div>
+      <div class="scroll-hint"><span class="scroll-line"></span> TAKE YOUR TIME</div>
+      <div class="floating-word" aria-hidden="true">a universe of little things</div>
+    </section>
+
+    <section class="scene" id="giftScene" aria-labelledby="giftTitle">
+      <div class="section-heading">
+        <div class="eyebrow">01 — SOMETHING FOR YOU</div>
+        <h2 id="giftTitle">Every secret starts<br>with a <em>little wonder.</em></h2>
+        <p>Tap the gift to wake up the magic.</p>
+      </div>
+      <div class="gift-stage">
+        <div class="gift-halo"></div><div class="gift-shadow"></div>
+        <button class="gift" id="giftButton" aria-label="Open the birthday gift">
+          <span class="gift-lid"><i class="lid-ribbon"></i><i class="lid-bow bow-left"></i><i class="lid-bow bow-right"></i></span>
+          <span class="gift-box"><i class="box-ribbon"></i><i class="box-front-shine"></i></span>
+          <span class="gift-spark spark-a">✦</span><span class="gift-spark spark-b">✧</span><span class="gift-spark spark-c">✦</span>
+        </button>
+        <div class="gift-caption" id="giftCaption">A SMALL BOX. A BIG FEELING.</div>
+      </div>
+      <button class="text-button next-step" id="giftContinue" hidden>THE SECRET IS INSIDE <span>→</span></button>
+    </section>
+
+    <section class="scene" id="vaultScene" aria-labelledby="vaultTitle">
+      <div class="eyebrow">02 — A SECRET, JUST BETWEEN US</div>
+      <div class="vault-card" id="vaultCard">
+        <div class="vault-lock">✧</div>
+        <h2 id="vaultTitle">A little secret.</h2>
+        <p>Some memories need a key.<br><span>Do you know the four numbers?</span></p>
+        <div class="pin-dots" id="pinDots" aria-label="Four digit PIN entry"><span></span><span></span><span></span><span></span></div>
+        <div class="keypad" id="keypad" aria-label="PIN keypad">
+          <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button>
+          <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button>
+          <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button>
+          <button class="key-muted" data-key="clear">CLEAR</button><button data-key="0">0</button><button class="key-muted" data-key="back" aria-label="Delete last digit">⌫</button>
+        </div>
+        <p class="pin-feedback" id="pinFeedback" aria-live="polite">A hint: a date worth remembering.</p>
+      </div>
+    </section>
+
+    <section class="scene" id="birthdayScene" aria-labelledby="birthdayTitle">
+      <div class="birthday-stars" aria-hidden="true">✦　·　✧　　✦　·　✧</div>
+      <div class="curtain curtain-left"></div><div class="curtain curtain-right"></div>
+      <div class="birthday-content">
+        <div class="eyebrow reveal">TODAY, THE WORLD GETS A LITTLE BRIGHTER</div>
+        <p class="birthday-overline reveal">A DAY MADE FOR YOU</p>
+        <h1 class="birthday-title cinematic-title" id="birthdayTitle">Dear <em>Someone</em>,<br>this day is yours.</h1>
+        <div class="birthday-subtitle-wrap">
+          <p class="birthday-subtitle reveal">May the little things find you, the good things stay,<br>and the beautiful things surprise you.</p>
+        </div>
+        <div class="cake-wrap reveal" aria-label="Animated three-dimensional birthday cake">
+          <div class="cake-glow"></div><div class="cake-candles"><i></i><i></i><i></i></div>
+          <div class="cake-top"></div><div class="cake-body"><span></span><span></span><span></span></div>
+          <div class="cake-plate"></div><div class="cake-reflection"></div>
+        </div>
+        <div class="birthday-actions reveal"><button class="primary-button" id="celebrateBtn">LET THE MAGIC BEGIN <span>✦</span></button></div>
+      </div>
+      <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+    </section>
+
+    <section class="scene" id="storyScene" aria-labelledby="storyTitle">
+      <div class="eyebrow">03 — THE THINGS THAT MATTER</div>
+      <div class="story-layout">
+        <div class="story-visual">
+          <div class="memory-sun"></div><div class="story-frame frame-back"></div>
+          <div class="story-frame frame-front"><span>✦</span><small>A MOMENT TO KEEP</small></div>
+          <div class="story-orbit"></div>
+        </div>
+        <div class="story-copy">
+          <p class="kicker" id="storyCount">A NOTE FOR YOU · 01</p>
+          <h2 id="storyTitle">Some people make<br>ordinary days <em>glow.</em></h2>
+          <p id="storyText">They turn small moments into the ones you remember. This little world is made of those moments — and a few new ones still waiting to happen.</p>
+          <div class="story-progress"><span class="progress-fill" id="storyProgress"></span></div>
+          <div class="story-actions"><button class="text-button" id="storyPrev" disabled>← BACK</button><button class="primary-button" id="storyNext">NEXT LITTLE THING <span>→</span></button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene memories-scene" id="memoriesScene" aria-labelledby="memoriesTitle">
+      <div class="eyebrow">04 — YOUR LITTLE TIME CAPSULE</div>
+      <h2 id="memoriesTitle" class="section-title">Moments worth <em>keeping.</em></h2>
+      <p class="section-subtitle">A tiny scrapbook of the moments you never want to lose.</p>
+      <label class="upload-button" for="photoUpload">＋ ADD YOUR PHOTOS<input id="photoUpload" type="file" accept="image/*" multiple></label>
+      <div id="photoGrid" class="photo-grid">
+        <div class="empty-memory"><span>✧</span><strong>Your memories go here.</strong><small>Choose a few photos to start your scrapbook.</small></div>
+      </div>
+      <div class="gallery-controls"><button class="text-button" id="clearPhotos">CLEAR PHOTOS</button><button class="primary-button" id="memoriesContinue">KEEP THE STORY GOING <span>→</span></button></div>
+      <p class="tiny-note">Photos stay in this browser session unless you save them elsewhere. They are not uploaded.</p>
+    </section>
+
+    <section class="scene" id="gamesScene" aria-labelledby="gamesTitle">
+      <div class="eyebrow">05 — A LITTLE PLAY, A LITTLE MAGIC</div>
+      <h2 id="gamesTitle" class="section-title">Choose your <em>adventure.</em></h2>
+      <div class="game-tabs">
+        <button class="game-tab selected" data-game="balloons">01 · Balloon burst</button>
+        <button class="game-tab" data-game="memory">02 · Memory match</button>
+        <button class="game-tab" data-game="secret">03 · Find the star</button>
+      </div>
+      <div class="game-panel" id="balloonGame">
+        <div class="game-heading"><div><h3>Pop a little happiness.</h3><p>Tap the balloons before they float away. Pop 8 to win a surprise.</p></div><div class="score"><small>SCORE</small><strong id="balloonScore">0 / 8</strong></div></div>
+        <div class="balloon-field" id="balloonField"><div class="game-start"><span>✧</span><p>Ready when you are.</p><button class="primary-button" id="startBalloons">START PLAYING <span>→</span></button></div></div>
+        <p class="game-feedback" id="balloonFeedback" aria-live="polite">Every tap brings you closer.</p>
+      </div>
+      <div class="game-panel" id="memoryGame" hidden>
+        <div class="game-heading"><div><h3>Find the matching stars.</h3><p>Flip the cards and match all 6 pairs.</p></div><div class="score"><small>MATCHED</small><strong id="matchScore">0 / 6</strong></div></div>
+        <div class="memory-board" id="memoryBoard"></div><p class="game-feedback" id="memoryFeedback" aria-live="polite">Trust your memory.</p>
+        <button class="text-button" id="resetMemory">SHUFFLE AGAIN ↻</button>
+      </div>
+      <div class="game-panel" id="secretGame" hidden>
+        <div class="game-heading"><div><h3>One star is hiding.</h3><p>Choose a moon and uncover a tiny message.</p></div></div>
+        <div class="secret-options" id="secretOptions"><button data-secret="0">☾</button><button data-secret="1">☾</button><button data-secret="2">☾</button></div>
+        <p class="game-feedback" id="secretFeedback" aria-live="polite">One of these is holding a little wish for you.</p>
+      </div>
+      <button class="primary-button continue-games" id="gamesContinue">UNLOCK THE LETTER <span>→</span></button>
+    </section>
+
+    <section class="scene letter-scene" id="letterScene" aria-labelledby="letterTitle">
+      <div class="eyebrow">A FEW WORDS, FROM THE HEART</div>
+      <div class="letter-layout">
+        <div class="envelope-stage" id="envelopeStage" role="button" tabindex="0" aria-label="Open the birthday letter">
+          <div class="envelope-shadow"></div>
+          <div class="envelope"><div class="envelope-paper"><span>For you, always.</span><small>WITH ALL MY HEART</small></div><div class="envelope-flap"></div><div class="envelope-front"></div><div class="envelope-seal">✦</div></div>
+          <p class="envelope-hint">TAP TO OPEN YOUR LETTER</p>
+        </div>
+        <article class="letter-paper" id="letterPaper" aria-live="polite">
+          <div class="paper-texture"></div><p class="letter-date">A LITTLE NOTE FOR YOUR BIRTHDAY</p>
+          <h2 id="letterTitle">Dear <em>Someone,</em></h2>
+          <div id="letterMessage" class="letter-message">
+            <p>I hope this next chapter brings you the kind of happiness that feels calm, real, and completely your own.</p>
+            <p>Thank you for being exactly who you are. May you find reasons to laugh on ordinary days, courage for the difficult ones, and people who remind you how loved you are.</p>
+            <p>There is so much good still waiting for you. This is just a small reminder to keep looking for it.</p>
+            <p class="letter-signoff">With love, always. <span>♥</span></p>
+          </div>
+          <button class="text-button" id="letterContinue">ONE LAST SURPRISE <span>→</span></button>
+        </article>
+      </div>
+    </section>
+
+    <section class="scene" id="finalScene" aria-labelledby="finalTitle">
+      <div class="final-aura"></div><div class="final-stars" aria-hidden="true">✦　·　✧　·　✦</div>
+      <div class="final-content">
+        <div class="eyebrow">AND THAT ISN'T EVEN THE BEST PART</div><div class="final-emblem">✦</div>
+        <h1 id="finalTitle">The world is better<br><em>with you in it.</em></h1>
+        <p>Keep this little universe whenever you need a reminder of how special you are.</p>
+        <div class="final-signature">MADE WITH A LITTLE EXTRA MAGIC</div>
+        <button class="primary-button" id="restartBtn">LIVE THE MAGIC AGAIN <span>↻</span></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><span>MADE OF MOMENTS & MAGIC</span><span id="footerChapter">01 / 09</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
